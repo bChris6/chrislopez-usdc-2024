@@ -44,4 +44,5 @@ Here is a plan:
 2. Have a function that runs through each content section and runs the function I made in #1 and if it returns true it will append an object with the Page, Line to an array of objects
 3. Have a function that simplifies #2, it takes in page number, ISBN, and Line and gives out a result object. 
     It will be similar to this https://stackoverflow.com/questions/43709433/can-i-create-an-object-without-a-name-in-js
-4. Grab that array when #2 finishes running and have a builder helper function that takes in the array of results and the search term and appends them together. (I need to take into consideration what to do if the results is empty. If the result is empty I might just not change it but just make something like this result "Results":[])
+4. Run #2 as many times as I need for each book object in my starting array. And get an array of processed book objects.
+5. Grab that array when #4 finishes running and have a builder helper function that takes in the array of processed book objects and appends them together into a final result. 
