@@ -19,8 +19,7 @@
  * @returns {JSON} - Search results.
  * */ 
  function findSearchTermInBooks(searchTerm, scannedTextObj) {
-    /** You will need to implement your search and 
-     * return the appropriate object here. */
+
 
     var result = {
         "SearchTerm": "",
@@ -28,6 +27,10 @@
     };
     
     return result; 
+}
+
+function findIfTermInText(searchTerm, textString) {
+    return textString.includes(searchTerm);
 }
 
 /** Example input object. */
@@ -66,7 +69,6 @@ const twentyLeaguesOut = {
         }
     ]
 }
-
 /*
  _   _ _   _ ___ _____   _____ _____ ____ _____ ____  
 | | | | \ | |_ _|_   _| |_   _| ____/ ___|_   _/ ___| 
@@ -101,4 +103,33 @@ if (test2result.Results.length == 1) {
     console.log("FAIL: Test 2");
     console.log("Expected:", twentyLeaguesOut.Results.length);
     console.log("Received:", test2result.Results.length);
+}
+
+
+//I am using the same case for testing my findIfTermInText button as the sample output uses. 
+
+//Check If The FindIfTerm correctly finds the term inside and returns false when it doesn't. 
+const test3IfWordIsInText = findIfTermInText("the", twentyLeaguesIn[0].Content[1].Text);
+if(test3IfWordIsInText) {
+    console.log("PASS: Test3")
+} else {
+    console.log("FAIL: Test3")
+    console.log("Expected:", true);
+}
+
+const test4IfWordIsInText = findIfTermInText("the", twentyLeaguesIn[0].Content[0].Text);
+if(test4IfWordIsInText) {
+    console.log("FAIL: Test4");
+    console.log("Expected:", false);
+} else {
+    console.log("PASS: Test4")
+}
+//Check if the testIfWordIsInText is capitalized sensitive as I was requested to have it.
+//I am looking for the "The" capital in the first text. 
+const test5IfWordIsInTextCaptial = findIfTermInText("The", twentyLeaguesIn[0].Content[1].Text);
+if(test5IfWordIsInTextCaptial) {
+    console.log("FAIL: Test5");
+    console.log("Expected:", false);
+} else {
+    console.log("PASS: Test5")
 }
