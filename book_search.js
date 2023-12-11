@@ -28,9 +28,25 @@
     
     return result; 
 }
-
+//Helper Functions 
 function findIfTermInText(searchTerm, textString) {
     return textString.includes(searchTerm);
+}
+
+function getArrayWithMatchingText(searchTerm, bookObj) { 
+    var matchingArray = [];
+
+    for (i = 0; i < bookObj.Content.length; i++) {
+        const currentText = bookObj.Content[i].Text;
+        if (findIfTermInText(searchTerm, currentText)) {
+            matchingArray.push(bookObj.Content[i]);
+        }
+    }
+    return matchingArray;
+}
+
+function getISBNForBookObj(bookObj) {
+    return bookObj.ISBN;
 }
 
 /** Example input object. */
@@ -111,9 +127,9 @@ if (test2result.Results.length == 1) {
 //Check If The FindIfTerm correctly finds the term inside and returns false when it doesn't. 
 const test3IfWordIsInText = findIfTermInText("the", twentyLeaguesIn[0].Content[1].Text);
 if(test3IfWordIsInText) {
-    console.log("PASS: Test3")
+    console.log("PASS: Test3");
 } else {
-    console.log("FAIL: Test3")
+    console.log("FAIL: Test3");
     console.log("Expected:", true);
 }
 
@@ -122,7 +138,7 @@ if(test4IfWordIsInText) {
     console.log("FAIL: Test4");
     console.log("Expected:", false);
 } else {
-    console.log("PASS: Test4")
+    console.log("PASS: Test4");
 }
 //Check if the testIfWordIsInText is capitalized sensitive as I was requested to have it.
 //I am looking for the "The" capital in the first text. 
@@ -131,5 +147,29 @@ if(test5IfWordIsInTextCaptial) {
     console.log("FAIL: Test5");
     console.log("Expected:", false);
 } else {
-    console.log("PASS: Test5")
+    console.log("PASS: Test5");
+}
+
+//Multi Word Input Check 
+const test6IfWordIsInTextSpacel = findIfTermInText("The dark", twentyLeaguesIn[0].Content[0].Text);
+if(test6IfWordIsInTextSpacel) {
+    console.log("PASS: Test6");
+} else {
+    console.log("FAIL: Test6");
+    console.log("Expected:", true);
+}
+
+//CheckGetArray
+const test7GetArray = getArrayWithMatchingText("The dark", twentyLeaguesIn[0]);
+const test7BookArray = [{
+            "Page": 31,
+            "Line": 8,
+            "Text": "now simply went on by her own momentum.  The dark-" 
+}];
+
+if(JSON.stringify(test7GetArray) === JSON.stringify(test7BookArray)) {
+    console.log("PASS: Test7");
+} else {
+    console.log("FAIL: Test7");
+    console.log("Expected:", test7BookArray, "But we recieved", test7GetArray);
 }

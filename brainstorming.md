@@ -40,7 +40,7 @@ These assumptions are necessary in a situation where I am not receviing too much
 Here is a plan:
 1. Start with making a function that can find which lines indeed contain the text and return true or false.
     https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes 
-    Just did some research and I found a String.prototype.includes() function that makes my life eaiser. Instead of having to compare each word in my 
+    Just did some research and I found a String.prototype.includes() function that makes my life eaiser. Instead of having to compare on my own this does the work for me! 
 2. Have a function that runs through each content section and runs the function I made in #1 and if it returns true it will append an object with the Page, Line to an array of objects
 3. Have a function that simplifies #2, it takes in page number, ISBN, and Line and gives out a result object. 
     It will be similar to this https://stackoverflow.com/questions/43709433/can-i-create-an-object-without-a-name-in-js
