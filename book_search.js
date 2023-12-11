@@ -33,6 +33,7 @@ function findIfTermInText(searchTerm, textString) {
     return textString.includes(searchTerm);
 }
 
+//Get Array With Matching Text, Contents I want 
 function getArrayWithMatchingText(searchTerm, bookObj) { 
     var matchingArray = [];
 
@@ -45,6 +46,7 @@ function getArrayWithMatchingText(searchTerm, bookObj) {
     return matchingArray;
 }
 
+//Easily Get ISBN, just insert bookObj
 function getISBNForBookObj(bookObj) {
     return bookObj.ISBN;
 }
