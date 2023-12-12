@@ -28,12 +28,12 @@
     return result; 
 }
 
-//Helper Functions 
+//Helper Functions  (Checking)
 function findIfTermInText(searchTerm, textString) {
     return textString.includes(searchTerm);
 }
 
-//Only keep contents I want from bookObj
+//Only keep contents I want from bookObj (Gathering)
 function getArrayWithProcessedBookObj(searchTerm, bookObj) { 
     var matchingArray = [];
 
@@ -47,13 +47,13 @@ function getArrayWithProcessedBookObj(searchTerm, bookObj) {
     return matchingArray;
 }
 
-//Easily Get ISBN, just insert bookObj
+//Easily Get ISBN, just insert bookObj (Helper Function To Processing)
 function getISBNForContent(bookObj) {
     return bookObj.ISBN;
 }
 
 
-//For processBookObj
+//For processBookObj (Processing)
 function transformContentToDesiredForm(contentIWantToKeepInBookObj, ISBN) {
     var processedBookObj = {
         "ISBN": ISBN,
@@ -63,7 +63,7 @@ function transformContentToDesiredForm(contentIWantToKeepInBookObj, ISBN) {
     return processedBookObj;
 }
 
-//Merging Arrays to get result array
+//Merging Arrays to get result array (Final Level)
 function getResultsArray(searchTerm, scannedTextObj) {
     var results = [];
     for(var i = 0; i < scannedTextObj.length; i++) {
