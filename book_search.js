@@ -33,23 +33,37 @@ function findIfTermInText(searchTerm, textString) {
     return textString.includes(searchTerm);
 }
 
-//Get Array With Matching Text, Contents I want 
-function getArrayWithMatchingText(searchTerm, bookObj) { 
+//Only keep contents I want from bookobj
+function getArrayWithProcessedBookObj(searchTerm, bookObj) { 
     var matchingArray = [];
 
     for (i = 0; i < bookObj.Content.length; i++) {
         const currentText = bookObj.Content[i].Text;
         if (findIfTermInText(searchTerm, currentText)) {
-            matchingArray.push(bookObj.Content[i]);
+            //If term is in the text, pushed the processed content
+            matchingArray.push(transformContentToDesiredForm(bookObj.Content[i], getISBNForContent(bookObj)));        
         }
     }
     return matchingArray;
 }
 
 //Easily Get ISBN, just insert bookObj
-function getISBNForBookObj(bookObj) {
+function getISBNForContent(bookObj) {
     return bookObj.ISBN;
 }
+
+
+//For processBookObj
+function transformContentToDesiredForm(contentIWantToKeepInBookObj, ISBN) {
+    var processedBookObj = {
+        "ISBN": ISBN,
+        "Page": contentIWantToKeepInBookObj.Page,
+        "Line": contentIWantToKeepInBookObj.Line
+    }
+    return processedBookObj;
+}
+
+
 
 /** Example input object. */
 const twentyLeaguesIn = [
@@ -161,17 +175,15 @@ if(test6IfWordIsInTextSpacel) {
     console.log("Expected:", true);
 }
 
-//CheckGetArray
-const test7GetArray = getArrayWithMatchingText("The dark", twentyLeaguesIn[0]);
-const test7BookArray = [{
-            "Page": 31,
-            "Line": 8,
-            "Text": "now simply went on by her own momentum.  The dark-" 
-}];
 
-if(JSON.stringify(test7GetArray) === JSON.stringify(test7BookArray)) {
+//CheckGetArray
+const test7GetArray = getArrayWithProcessedBookObj("the", twentyLeaguesIn[0]);
+const test7BookObjectResult = twentyLeaguesOut.Results;
+
+if(JSON.stringify(test7GetArray) === JSON.stringify(test7BookObjectResult)) {
     console.log("PASS: Test7");
 } else {
     console.log("FAIL: Test7");
-    console.log("Expected:", test7BookArray, "But we recieved", test7GetArray);
+    console.log("Expected:", test7BookObjectResult, "But we recieved", test7GetArray);
 }
+
