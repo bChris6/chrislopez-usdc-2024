@@ -112,6 +112,105 @@ const twentyLeaguesOut = {
         }
     ]
 }
+
+//Slightly Longer Example To Test
+const slightlyLongerTwentyLeaguesIn = [
+    {
+        "Title": "Twenty Thousand Leagues Under the Sea",
+        "ISBN": "9780000528531",
+        "Content": [
+            {
+                "Page": 31,
+                "Line": 8,
+                "Text": "now simply went on by her own momentum.  The dark-"
+            },
+            {
+                "Page": 31,
+                "Line": 9,
+                "Text": "ness was then profound; and however good the Canadian\'s"
+            },
+            {
+                "Page": 31,
+                "Line": 10,
+                "Text": "eyes were, I asked myself how he had managed to see, and"
+            }
+        ] 
+    },
+    {
+        "Title": "Twenty Thousand Leagues Aiding the Sea",
+        "ISBN": "12345432",
+        "Content": [
+            {
+                "Page": 28,
+                "Line": 14,
+                "Text": "now the  went on by the own momentum.  The dark-"
+            },
+            {
+                "Page": 31,
+                "Line": 9,
+                "Text": "ness was then profound; and however good the Canadian\'s"
+            },
+            {
+                "Page": 31,
+                "Line": 10,
+                "Text": "eyes were, I asked myself how he had managed to see, and"
+            }
+        ] 
+    },
+    {
+        "Title": "Twenty Thousand Leagues Under the Ocean",
+        "ISBN": "456765465",
+        "Content": [
+            {
+                "Page": 11,
+                "Line": 7,
+                "Text": "now simply went on by her own momentum.  The dark-"
+            },
+            {
+                "Page": 1,
+                "Line": 978,
+                "Text": "ness was then profound; and however good the Canadian\'s"
+            },
+            {
+                "Page": 1,
+                "Line": 110,
+                "Text": "eyes the were, I asked myself how he had managed to see, and"
+            }
+        ] 
+    },
+]
+
+/** Example output object */
+const slightlyLongerTwentyLeaguesOut = {
+    "SearchTerm": "the",
+    "Results": [
+        {
+            "ISBN": "9780000528531",
+            "Page": 31,
+            "Line": 9
+        },
+        {
+            "ISBN": "12345432",
+            "Page": 28,
+            "Line": 14,
+        },
+        {
+            "ISBN": "12345432",
+            "Page": 31,
+            "Line": 9
+        },
+        {
+            "ISBN": "456765465",
+            "Page": 1,
+            "Line": 978
+        },
+        {
+            "ISBN": "456765465",
+            "Page": 1,
+            "Line": 110
+        }
+    ]
+}
 /*
  _   _ _   _ ___ _____   _____ _____ ____ _____ ____  
 | | | | \ | |_ _|_   _| |_   _| ____/ ___|_   _/ ___| 
@@ -198,3 +297,12 @@ if(JSON.stringify(test7GetArray) === JSON.stringify(test7BookObjectResult)) {
     console.log("Expected:", test7BookObjectResult, "But we recieved", test7GetArray);
 }
 
+//Testing Slightly Longer Version
+const test8result = findSearchTermInBooks("the", slightlyLongerTwentyLeaguesIn);
+if (JSON.stringify(slightlyLongerTwentyLeaguesOut) === JSON.stringify(test8result)) {
+    console.log("PASS: Test 8");
+} else {
+    console.log("FAIL: Test 8");
+    console.log("Expected:", slightlyLongerTwentyLeaguesOut);
+    console.log("Received:", test8result);
+}
