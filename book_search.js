@@ -253,35 +253,35 @@ if (test2result.Results.length == 1) {
 //Check If The FindIfTerm correctly finds the term inside and returns false when it doesn't. 
 const test3IfWordIsInText = findIfTermInText("the", twentyLeaguesIn[0].Content[1].Text);
 if(test3IfWordIsInText) {
-    console.log("PASS: Test3");
+    console.log("PASS: Test 3");
 } else {
-    console.log("FAIL: Test3");
+    console.log("FAIL: Test 3");
     console.log("Expected:", true);
 }
 
 const test4IfWordIsInText = findIfTermInText("the", twentyLeaguesIn[0].Content[0].Text);
 if(test4IfWordIsInText) {
-    console.log("FAIL: Test4");
+    console.log("FAIL: Test 4");
     console.log("Expected:", false);
 } else {
-    console.log("PASS: Test4");
+    console.log("PASS: Test 4");
 }
 //Check if the testIfWordIsInText is capitalized sensitive as I was requested to have it.
 //I am looking for the "The" capital in the first text. 
 const test5IfWordIsInTextCaptial = findIfTermInText("The", twentyLeaguesIn[0].Content[1].Text);
 if(test5IfWordIsInTextCaptial) {
-    console.log("FAIL: Test5");
+    console.log("FAIL: Test 5");
     console.log("Expected:", false);
 } else {
-    console.log("PASS: Test5");
+    console.log("PASS: Test 5");
 }
 
 //Multi Word Input Check 
 const test6IfWordIsInTextSpacel = findIfTermInText("The dark", twentyLeaguesIn[0].Content[0].Text);
 if(test6IfWordIsInTextSpacel) {
-    console.log("PASS: Test6");
+    console.log("PASS: Test 6");
 } else {
-    console.log("FAIL: Test6");
+    console.log("FAIL: Test 6");
     console.log("Expected:", true);
 }
 
@@ -291,9 +291,9 @@ const test7GetArray = getArrayWithProcessedBookObj("the", twentyLeaguesIn[0]);
 const test7BookObjectResult = twentyLeaguesOut.Results;
 
 if(JSON.stringify(test7GetArray) === JSON.stringify(test7BookObjectResult)) {
-    console.log("PASS: Test7");
+    console.log("PASS: Test 7");
 } else {
-    console.log("FAIL: Test7");
+    console.log("FAIL: Test 7");
     console.log("Expected:", test7BookObjectResult, "But we recieved", test7GetArray);
 }
 
