@@ -18,22 +18,22 @@
  * @param {JSON} scannedTextObj - A JSON object representing the scanned text.
  * @returns {JSON} - Search results.
  * */ 
+//Putting it all together to get the final result
  function findSearchTermInBooks(searchTerm, scannedTextObj) {
-
-
     var result = {
-        "SearchTerm": "",
-        "Results": []
+        "SearchTerm": searchTerm,
+        "Results": getResultsArray(searchTerm, scannedTextObj)
     };
     
     return result; 
 }
+
 //Helper Functions 
 function findIfTermInText(searchTerm, textString) {
     return textString.includes(searchTerm);
 }
 
-//Only keep contents I want from bookobj
+//Only keep contents I want from bookObj
 function getArrayWithProcessedBookObj(searchTerm, bookObj) { 
     var matchingArray = [];
 
@@ -63,6 +63,17 @@ function transformContentToDesiredForm(contentIWantToKeepInBookObj, ISBN) {
     return processedBookObj;
 }
 
+//Merging Arrays to get result array
+function getResultsArray(searchTerm, scannedTextObj) {
+    var results = [];
+    for(var i = 0; i < scannedTextObj.length; i++) {
+        const ArrayWithProcessedBookObjs = getArrayWithProcessedBookObj(searchTerm, scannedTextObj[i]);
+        for(var j = 0; j < ArrayWithProcessedBookObjs.length; j++) {
+            results.push(ArrayWithProcessedBookObjs[j]);
+        }
+    } 
+    return results;
+}
 
 
 /** Example input object. */
